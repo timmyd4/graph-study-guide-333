@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -75,6 +76,13 @@ public class Practice {
    * @return a sorted list of all reachable vertex values by 
    */
   public static List<Integer> sortedReachable(Vertex<Integer> starting) {
+
+    List<Integer> list = new ArrayList<>();
+
+    Queue<Vertex<Int
+
+    if(starting == null) return list;
+
     return null;
   }
 
