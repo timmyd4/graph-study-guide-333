@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -79,11 +80,32 @@ public class Practice {
 
     List<Integer> list = new ArrayList<>();
 
-    Queue<Vertex<Int
-
     if(starting == null) return list;
 
-    return null;
+    Queue<Vertex<Integer>> q = new LinkedList<>();
+    Set<Vertex<Integer>> set = new HashSet<>();
+
+    q.add(starting);
+    set.add(starting);
+
+    while(!q.isEmpty())
+    {
+      Vertex<Integer> pulled = q.poll();
+
+      list.add(pulled.data);
+
+      for(Vertex<Integer> neigh: pulled.neighbors)
+      {
+        if(!set.contains(neigh))
+        {
+          set.add(neigh);
+          q.add(neigh);
+        }
+      }
+    }
+
+    Collections.sort(list);
+    return list;
   }
 
   /**
