@@ -119,7 +119,34 @@ public class Practice {
    * @return a sorted list of all reachable vertex values
    */
   public static List<Integer> sortedReachable(Map<Integer, Set<Integer>> graph, int starting) {
-    return null;
+
+    List<Integer> list = new ArrayList<>();
+
+    if(!graph.containsKey(starting)) return list;
+
+    Set<Integer> set = new HashSet<>();
+    Queue<Integer> q = new LinkedList<>();
+
+    q.add(starting);
+    set.add(starting);
+
+    while(!q.isEmpty())
+    {
+      int current = q.poll();
+      list.add(current);
+
+      for(int neighbor : graph.getOrDefault(current, Collections.emptySet()))
+      {
+        if(!set.contains(neighbor))
+        {
+          set.add(neighbor);
+          q.add(neighbor);
+        }
+      }
+    }
+
+    Collections.sort(list);
+    return list;
   }
 
   /**
