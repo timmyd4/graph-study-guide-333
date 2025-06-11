@@ -164,8 +164,41 @@ public class Practice {
    * @return true if there is a two-way connection between v1 and v2, false otherwise
    */
   public static <T> boolean twoWay(Vertex<T> v1, Vertex<T> v2) {
+    if(v1 == null || v2 == null) return false;
+    if(v1 == v2) return true;
+    
+
+    return twoWayHelper(v1, v2) && twoWayHelper(v2, v1);
+  }
+
+  public static <T> boolean twoWayHelper(Vertex<T> start, Vertex<T> target)
+  {
+    Queue<Vertex<T>> q = new LinkedList<>();
+    Set<Vertex<T>> set = new HashSet<>();
+
+    q.add(start);
+    set.add(start);
+
+    while(!q.isEmpty())
+    {
+      Vertex<T> pulled = q.poll();
+      if(pulled == target) return true;
+
+      for(Vertex<T> items: pulled.neighbors)
+      {
+        if(!set.contains(items))
+        {
+          set.add(items);
+          q.add(items);
+        }
+      }
+    }
+
+
     return false;
   }
+
+ 
 
   /**
    * Returns whether there exists a path from the starting to ending vertex that includes only positive values.
